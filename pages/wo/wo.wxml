@@ -1,0 +1,287 @@
+<!-- 弹框需要用到下面两个 -->
+<import src="/components/dialog/dialog.wxml" />
+<template data="{{...myDialog}}" is="dialog" />
+
+
+<!-- 名片卡 -->
+<view class="content">
+  <view class="part1">
+    <view class="avatarBanner">
+      <button bindgetuserinfo="bindgetuserinfo" class="nobtn" openType="{{userInfo.avatarUrl?'':'getUserInfo'}}">
+
+        <view bindtap="{{userInfo.avatar?'edituc':'band_none'}}" class="part1l left">
+          <image backgroundSize="cover" src="{{userInfo.avatarUrl?userInfo.avatarUrl:'../../images/no_avatar.jpg'}}" style="width:88rpx; height:88rpx;"></image>
+        </view>
+
+
+        <view bindtap="{{userInfo.avatarUrl?'edituc':'band_none'}}" class="part1m left">
+          <view class="part1mt main20 white" style="color:#737373">{{userInfo.nickName?userInfo.nickName:'点击更新信息'}}</view>
+          <view class="part1mf main21 white mid" style="padding:5rpx 10rpx;width:90rpx;color:#666;border: 2rpx solid #666;" wx:if="{{spadmin==0&&!userInfo.avatarUrl}}">临时会员</view>
+          <view class="part1mf main21 white mid" style="padding:5rpx 10rpx;width:90rpx;color:#F50;border: 2rpx solid #F50;" wx:if="{{spadmin==0&&userInfo.avatarUrl}}">普通会员</view>
+          <view class="part1mf main21 white mid" style="padding:5rpx 10rpx;width:90rpx;color:#FF5234;border: 2rpx solid #FF5234;" wx:if="{{spadmin==1&&userInfo.avatar}}">分店店长</view>
+        </view>
+
+      </button>
+
+
+
+
+      <form bindsubmit="formSubmit" class="part1r right main24 white" reportSubmit="true" style="padding-top:20rpx;" wx:if="{{nofans!='none'&&!needreset&&!isshmode}}">
+        <view class="section section_on" wx:if="true">
+          <view class="section__title" style="padding-bottom:10rpx;padding-right:10rpx;color:#737373">签到提醒</view>
+          <button formType="submit">签到开关</button>
+        </view>
+        <view class="section section_off" wx:if="{{!sswitch}}">
+          <view class="section__title" style="padding-bottom:10rpx;padding-right:10rpx;color:#737373">签到提醒</view>
+          <button formType="submit">签到开关</button>
+        </view>
+      </form>
+      <view class="part1r right main24 white" wx:if="{{nofans=='none'&&!isshmode&&!needreset}}">
+        <view class="main24">
+          <button bindtap="band" class="main24" data-helpshopid="{{shopid}}" wx:if="{{userInfo.avatar}}">绑定会员</button>
+          <button bindgetuserinfo="bindgetuserinfo" class="main24" data-helpshopid="{{shopid}}" openType="getUserInfo" wx:if="{{!userInfo.avatar}}">绑定会员</button>
+        </view>
+      </view>
+      <view class="part1r right main24 white" wx:if="{{nofans=='none'&&!isshmode&&needreset}}">
+        <view class="main24">
+          <button bindtap="GetUcDat" class="main24">点击验证</button>
+        </view>
+      </view>
+    </view>
+    <view class="part2 newus" style="width:90%;position:absolute;top:180rpx;left:0;right:0;border-radius:20rpx;">
+      <view class="li">
+        <text class="red main30" style="font-weight:900">{{credit1}}</text>
+        <text style="color:#737373">可用积分</text>
+      </view>
+      <view class="li">
+        <text class="red main30" style="font-weight:900">{{credit2}}</text>
+        <text style="color:#737373">可用余额</text>
+      </view>
+      <view class="li">
+        <text class="red main30" style="font-weight:900">{{favnum}}</text>
+        <text style="color:#737373">站内收藏</text>
+      </view>
+    </view>
+  </view>
+
+
+  <view style="background:#ffffff;padding-top:100rpx;"></view>
+  <view class="part3 newus" wx:if="{{isdd}}">
+    <view class="part3t overfl">
+      <view class="part3tl f main30">我的订单</view>
+    </view>
+    <view class="{{spadmin==1||isucti==1?'part3f':'part3ff'}} overfl">
+     
+      <view bindtap="dcl" class="li gray">
+        <navigator url="/pages/order-list/index" hover-class="navigator-hover">
+          <view class="part3ft" style="position:relative;">
+            <image backgroundSize="cover" src="../../images/dd_dcl.png"></image>
+            <text class="i-dcl" wx:if="{{dclnum>0}}">{{dclnum}}</text>
+          </view>
+          <button>我的订单</button>
+        </navigator>
+      </view>
+      
+       <view bindtap="orderid" class="li gray">
+        <navigator url="/pages/select-address/index" hover-class="navigator-hover">
+          <view class="part3ft">
+            <button class="nobtn">
+              <image backgroundSize="cover" src="../../images/dd_add.png"></image>
+            </button>
+          </view>
+          <button>我的收货地址</button>
+        </navigator>
+      </view>
+      <!-- <view bindtap="ycl" class="li gray">
+        <view class="part3ft" style="position:relative;">
+          <image backgroundSize="cover" src="../../images/dd_ycl.png"></image>
+          <text class="i-ycl" wx:if="{{yclnum>0}}">{{yclnum}}</text>
+        </view>已处理
+      </view> -->
+      <view bindtap="ti" class="li gray" wx:if="{{spadmin==1||isucti==1}}">
+        <view class="part3ft">
+          <image backgroundSize="cover" src="../../images/dd_tx.png"></image>
+        </view>申请提现
+      </view>
+    </view>
+  </view>
+
+  <view class="temp" wx:if="{{isdd}}"></view>
+
+  <view class="part2 newus" style="padding: 0px 0px 24rpx 0px" wx:if="{{spadmin==1}}">
+    <view class="part3t overfl" style="padding: 0px 26rpx 10rpx 26rpx;">
+      <view class="part3tl f main30">分店管理</view>
+      <view class="part3tr right main24 gray">
+        <text bindtap="spadmin" style="color:#FF5432;padding-left:15rpx">更多设置</text>
+      </view>
+    </view>
+    <view style="padding: 24rpx 0px 24rpx 0px;">
+      <view bindtap="today" class="li" style="padding-bottom: 10rpx;">
+        <image src="../../images/baobiao_icon.png"></image>
+        <text class="gray main26 tp15">今日订单</text>
+      </view>
+      <view bindtap="ygtd" class="li" style="padding-bottom: 10rpx;">
+        <image src="../../images/fans.png"></image>
+        <text class="gray main26 tp15">员工团队</text>
+      </view>
+      <view bindtap="diysp" class="li" style="padding-bottom: 10rpx;">
+        <image src="../../images/share_order_icon.png"></image>
+        <text class="gray main26 tp15">店铺装修</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="temp" wx:if="{{spadmin==1}}"></view>
+
+  <view class="part3 newus" style="margin-bottom: .5pc;margin-top: .5pc;" wx:if="{{spadmin==1}}">
+    <view class="part3t overfl" style="border-bottom: 0px solid #e8e8e8;">
+      <view class="part3tl f main30">扩展团队</view>
+      <view bindtap="makehb" class="part3tr right main24 gray">
+        <text style="color:#FF5432;padding-left:15rpx">生成海报</text>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="temp" wx:if="{{spadmin==1}}"></view>
+  <view class="part4 newus" wx:if="{{isdiyuc<3}}">
+    <view>
+      <!-- <view bindtap="py" class="li" data-openid="{{openid}}">
+        <form bindsubmit="getfmid_all" reportSubmit="true">
+          <button class="nobtn" formType="submit">
+            <image src="../../images/bto_item11.png" style="width:52rpx;height:52rpx;"></image>
+          </button>
+          <button formType="submit">我的朋友</button>
+        </form>
+      </view> -->
+     
+     
+      <!-- <view bindtap="reset" class="li">
+        <button class="nobtn">
+          <image src="../../images/bto_item14.png" style="width:52rpx;height:52rpx;"></image>
+        </button>
+        <button>我的设置</button>
+      </view> -->
+      <view bindtap="opensp" class="li" data-openid="{{openid}}" data-spadmin="{{spadmin}}" wx:if="{{!isshmode&&spadmin==1}}">
+        <form bindsubmit="getfmid_all" reportSubmit="true">
+          <button class="nobtn" formType="submit">
+            <image src="../../images/bto_item15.png" style="width:52rpx;height:52rpx;"></image>
+          </button>
+          <button formType="submit">管理分店</button>
+        </form>
+      </view>
+      <view bindtap="openfdzs" class="li" data-openid="{{openid}}" data-spadmin="{{spadmin}}" wx:if="{{!isshmode&&spadmin==1}}">
+        <form bindsubmit="getfmid_all" reportSubmit="true">
+          <button class="nobtn" formType="submit">
+            <image src="../../images/bto_item16.png" style="width:52rpx;height:52rpx;"></image>
+          </button>
+          <button formType="submit">发单助手</button>
+        </form>
+      </view>
+      <!-- <view bindtap="dui" class="li">
+        <button class="nobtn">
+          <image src="../../images/bto_item17.png" style="width:52rpx;height:52rpx;"></image>
+        </button>
+        <button>积分兑换</button>
+      </view> -->
+      <view class="li">
+        <form bindsubmit="getfmid_all" reportSubmit="true">
+          <button class="nobtn" formType="submit" openType="share">
+            <image src="../../images/bto_item18.png" style="width:52rpx;height:52rpx;"></image>
+          </button>
+          <button formType="submit" openType="share">告诉好友</button>
+        </form>
+      </view>
+       <!-- <view class="li">
+        <form bindsubmit="getfmid_all" reportSubmit="true" bindtap="jumpPhone">
+          <button class="nobtn" formType="submit" openType="contact" sessionFrom="kefu">
+            <image src="../../images/bto_item13.png" style="width:52rpx;height:52rpx;"></image>
+          </button>
+          <button formType="submit" openType="contact" sessionFrom="kefu" >电话客服</button>
+        </form>
+      </view> -->
+      <view class="li">
+        <form bindsubmit="getfmid_all" reportSubmit="true" >
+          <button class="nobtn" formType="submit" openType="contact" sessionFrom="kefu">
+            <image src="../../images/bto_item13.png" style="width:52rpx;height:52rpx;"></image>
+          </button>
+          <button formType="submit" openType="contact" sessionFrom="kefu" >在线客服</button>
+        </form>
+      </view> 
+             <view class="li">
+        <form bindsubmit="getfmid_all" reportSubmit="true" bindtap="jumpPhone">
+          <button class="nobtn" formType="submit" >
+            <image src="../../images/bto_item13.png" style="width:52rpx;height:52rpx;"></image>
+          </button>
+          <button formType="submit"  >电话客服</button>
+        </form>
+      </view>
+             <!-- <view class="li">
+        <form bindsubmit="getfmid_all" reportSubmit="true" bindtap="aboutUs">
+          <button class="nobtn" formType="submit" openType="contact" sessionFrom="help|0">
+            <image src="../../images/bto_item12.png" style="width:52rpx;height:52rpx;"></image>
+          </button>
+          <button formType="submit" openType="contact" sessionFrom="help|0">关于我们</button>
+        </form>
+      </view> -->
+       <view class="li">
+        <form bindsubmit="getfmid_all" reportSubmit="true" bindtap="aboutUs">
+          <button class="nobtn" formType="submit" >
+            <image src="../../images/bto_item12.png" style="width:52rpx;height:52rpx;"></image>
+          </button>
+          <button formType="submit" >关于我们</button>
+        </form>
+      </view>
+    </view>
+  </view>
+  <view class="temp" wx:if="{{isdiyuc==1}}"></view>
+  <view class="part4 newus" wx:if="{{isdiyuc!=2}}">
+    <view>
+      <view class="li" wx:if="{{isdiyuc==3}}">
+        <form bindsubmit="getfmid_all" reportSubmit="true">
+          <button class="nobtn" formType="submit" openType="share">
+            <image src="../../images/bto_item18.png" style="width:52rpx;height:52rpx;"></image>
+          </button>
+          <button formType="submit" openType="share">告诉好友</button>
+        </form>
+      </view>
+      <block wx:if="{{isdiyuc!=2}}" wx:for="{{diymenu}}" wx:key="item">
+        <view bindtap="gobycid" class="li" data-cname="{{item.name}}" data-url="{{item.url}}" wx:if="{{item.name&&item.url&&!item.outer_url}}">
+          <button class="nobtn">
+            <image src="{{item.img}}" style="width:52rpx;height:52rpx;"></image>
+          </button>
+          <button>{{item.name}}</button>
+        </view>
+        <view bindtap="gobyh5" class="li" data-cname="{{item.name}}" data-pic="{{item.img}}" data-plus="{{item.iskf}}" data-url="{{item.outer_url}}" wx:if="{{item.name&&item.url&&item.outer_url}}">
+          <button class="nobtn" openType="contact" sessionFrom="kflink|{{item.outer_url}}|{{item.name}}|{{item.img}}|{{shopid}}" wx:if="{{item.iskf=='kf'}}">
+            <image src="{{item.img}}" style="width:52rpx;height:52rpx;"></image>
+          </button>
+          <button wx:if="{{item.iskf=='kf'}}">{{item.name}}</button>
+          <button class="nobtn" wx:if="{{item.iskf!='kf'}}">
+            <image src="{{item.img}}" style="width:52rpx;height:52rpx;"></image>
+          </button>
+          <button wx:if="{{item.iskf!='kf'}}">{{item.name}}</button>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="temp"></view>
+  <view class="part3 newus" data-openid="{{openid}}" style="padding-bottom: .2pc;padding-top: .2pc;" wx:if="{{spadmin!='1'&&isaddsp&&!isshmode}}">
+    <view class="part3t overfl" style="border-bottom: 0px solid #e8e8e8;">
+      <view class="part3tl f main30">
+        <image src="../../images/addsp.png" style="height:50rpx;width:50rpx"></image>开通分店</view>
+      <view bindtap="addsp" class="nobtn" data-helpshopid="{{shopid}} " data-openid="{{openid}}" style="overflow:visible">
+        <view class="part3tr right main24 gray">
+          <text style="color:#FF5432;padding-left:2rpx">立即申请</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="jiqri nobtn" style="overflow:visible;padding-bottom:10rpx" wx:if="{{isjqr&&!isshmode}}">
+    <button openType="contact" sessionFrom="">
+      <image src="../../images/cqrbt.png"></image>查券机器人
+    </button>
+  </view>
+
+
+</view>

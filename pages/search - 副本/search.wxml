@@ -1,0 +1,49 @@
+<!--pages/theme/theme.wxml-->
+<!--引入模板  -->
+<import src="../tpls/products/products-tpl.wxml" />
+
+<view class='container'>
+  <view class="comp-search">
+    <view class="search-wrap">
+      <icon size="14" type="search"></icon>
+      <input bindconfirm="searchkey" bindinput="bindKeyInput" confirmType="search" focus="{{name_focus}}" id="search" name="input" placeholder="请输入关键字或宝贝标题" value="{{searchInput}}"></input>
+      <view bindtap="clearSearch" class="cross {{keyword==''?'hide':''}}" wx:if="{{keyword!=''}}">×</view>
+    </view>
+    <button bindtap="navigateBack" class="cancel" wx:if="{{!fmkey}}">返回</button>
+    <button bindtap="reset_quick" class="cancel" wx:if="{{fmkey}}">首页</button>
+  </view>
+
+  <view class="filter">
+    <!-- <view bindtap="sortByDefault" class="tab {{tab==1?'active':''}}">
+      <text class="{{tab==1?'midmenubto':''}}">综合</text>
+    </view> -->
+        <view bindtap="sortByDefault" class="tab {{tab==1?'active':''}}">
+      <text class="{{tab==1?'midmenubto':''}}">综合</text>
+    </view>
+    <view bindtap="sortBySales" class="tab {{tab==2?'active':''}}">
+      <text class="{{tab==2?'midmenubto':''}}">销量</text>
+    </view>
+    <view bindtap="sortByPrice" class="tab {{tab==3?'active':''}} tab-price" data-direction="{{direction}}">
+      <text class="{{tab==3?'midmenubto':''}}">价格</text>
+      <text class="up {{direction===0?'sub-active':''}}">▲</text>
+      <text class="down {{direction===1?'sub-active':''}}">▼</text>
+    </view>
+    <view bindtap="sortBytm" class="tab {{tab==5?'active':''}}">
+      <text class="{{tab==5?'midmenubto':''}}">信誉</text>
+    </view>
+
+
+  </view>
+
+  <!-- 商品模块 -->
+  
+    <view class="product-main">
+    <template is="products" data="{{goods:goods}}"></template>
+  </view>
+
+
+
+  <!-- 底部加载提示 -->
+  <view hidden="" class="no-more-goods">{{hasMoreText}}</view>
+
+</view>

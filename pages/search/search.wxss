@@ -1,0 +1,353 @@
+/**index.wxss**/
+
+.container {
+  background-color: #F2f2f2;
+  min-height: 100%;
+}
+.swiper-container{
+  width: 750rpx;
+  position: relative;  
+}
+.swiper_box {
+  width: 100%;
+  height:562.5rpx;
+}
+
+/* //价格 */
+.active .sub-active {
+    color: #df2434!important;
+}
+
+.type-navbar{
+  white-space: nowrap;
+  height: 88rpx;
+  width: 100%;
+  background-color: #fff;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.type-box{
+  width:160rpx;
+  box-sizing: content-box;
+  font-size: 24rpx;
+  line-height: 84rpx;
+  text-align: center;
+  display: inline-block;
+  overflow: hidden;
+}
+.type-navbar-item{
+  border-bottom: 4rpx solid #fff;
+}
+.type-item-on{
+  border-bottom: 4rpx solid #e64340;
+}
+
+.goods-container{
+  display: flex;
+  justify-content: space-between;  
+  flex-wrap:wrap;
+  box-sizing: content-box;
+  padding: 24rpx;
+}
+.goods-box{
+  width: 339rpx;
+  height: 472rpx;
+  background-color: #fff;
+  overflow: hidden;
+  margin-bottom: 24rpx;
+  
+}
+.goods-box .img-box{
+  width: 339rpx;
+  height: 339rpx;
+  overflow: hidden;
+   position: relative;
+}
+.product-item-text{
+  text-align:center;
+  position: absolute;
+  bottom: 0px;
+  color: white;
+  font-size: 10px;
+  background: -webkit-linear-gradient(bottom,rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0));
+  height: 125rpx;
+  width: 98%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-left: 1%;
+  padding-right: 1%;
+  padding-bottom: 1%;
+}
+.goods-box .img-box image{
+   width: 339rpx;
+   height: 339rpx;
+}
+.goods-box .goods-title{
+  width: 280rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 24rpx;
+  padding: 24rpx 0 0rpx 0;
+  color:#000;
+  margin-left: 24rpx;
+}
+.goods-box .goods-price{
+  width: 280rpx;
+  overflow: hidden;
+  font-size: 24rpx;
+  padding: 24rpx 0;
+  color:#e64340;
+  margin-left: 24rpx;
+}
+.no-more-goods{
+  text-align: center;
+  font-size: 24rpx;
+  padding-bottom:48rpx; 
+  color: #999;
+  margin-top: 10px;
+}
+.type-container{
+  width: 100%;
+  height: 88rpx;
+  background-color: #fff;
+  overflow: hidden;
+}
+.notice{
+  display: flex;
+  justify-content: space-between;  
+  flex-wrap:wrap;
+  height: 80rpx;
+  line-height: 80rpx;
+  width: 750rpx;
+  margin-top: 10rpx;
+  background-color: #fff;
+}
+.notice_swiper{
+  padding-top: 15rpx;
+  padding-bottom: 15rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  width: 635rpx;
+}
+.notice_iteml {
+  padding-left: 25rpx;
+  padding-top: 15rpx;
+  padding-bottom: 15rpx;
+  font-size: 26rpx;
+  width: 80rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  color: #999;
+}
+.notice_itemr {
+  padding-left: 10rpx;
+  font-size: 26rpx;
+  overflow: hidden;
+  color: #e64340;
+  width: 635rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.pos-fiexd{
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.coupons{
+  margin-top:10rpx;
+  width: 100%;
+  height: 180rpx;
+  overflow: hidden;
+}
+.coupons-scroll{
+  white-space: nowrap;
+  height: 180rpx;
+  width: 100%;
+  background-color: #fff;
+}
+.coupons-item{
+  width:300rpx;
+  height: 180rpx;
+  margin: 10rpx;
+  padding-top: 20rpx;
+  padding-left: 15rpx;
+  background-color: #f1a83b;
+  box-sizing: content-box;
+  font-size: 20rpx;
+  line-height: 35rpx;
+  overflow: hidden;
+  color: #fff;
+  display: inline-block;
+}
+
+.search-view{
+  position:fixed;
+  left:0;
+  right:0;
+  top:0;
+  z-index:500;
+  width: 100%;
+  height: 100rpx;
+  background: gray;
+  display: flex;
+  flex-direction: column;
+}
+.serarch-content{
+   background: white;
+   width:650rpx;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   padding-top: auto;
+   padding-left: 20rpx;
+   padding-bottom: auto;
+   margin: auto;
+   height: 70rpx;
+   border-radius:5px 5px;
+}
+.search-icon{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+.search-input{
+  width: 500rpx;
+  font-size: 28rpx;
+}
+.search-btn{
+  width: 150rpx;
+  height: 70rpx;
+  margin-right: 0rpx;
+  background-color:#FF0000;
+  font-size: 28rpx;
+  align-items: center;
+  border-top-left-radius: 0rpx;
+  border-bottom-left-radius: 0rpx;
+  color:#fff;
+  border:none;
+  position: relative;
+}
+
+
+
+/* 搜索框 */
+.comp-search {
+    width: 96%;
+    height: 80rpx;
+    line-height: 80rpx;
+    overflow: hidden;
+    background: #df2434;
+    padding: 0 2%;
+    margin-top: -1px;
+    border-bottom: 1px solid #f6f6f6;
+    z-index: 9998;
+    position: fixed;
+}
+.search-wrap {
+    height: 50rpx;
+    width: 78%;
+    background: #fff;
+    border-radius: 30px;
+    position: relative;
+    vertical-align: middle;
+    float: left;
+    margin-top: 15rpx;
+    color: #666;
+}
+.search-wrap input {
+    height: 50rpx;
+    line-height: 50rpx;
+    padding-left: 10rpx;
+    font-size: 14px;
+    max-width: 80%;
+}
+.search-wrap icon {
+    margin-left: 20rpx;
+    height: 100%;
+    vertical-align: middle;
+    float: left;
+}
+.cancel {
+    padding: 0;
+    height: 50rpx;
+    width: 14%;
+    line-height: 50rpx;
+    margin-top: 15rpx;
+    font-size: 14px;
+    color: #666;
+    background: #fff;
+}
+
+.cross {
+    height: 30rpx;
+    background: #dcdcdc;
+    color: #fff;
+    line-height: 30rpx;
+    text-align: center;
+    display: inline-block;
+    position: absolute;
+    width: 30rpx;
+    top: 11rpx;
+    right: 10rpx;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 9;
+}
+.filter {
+    height: 80rpx;
+    line-height: 80rpx;
+    border-bottom: 1px solid #f6f6f6;
+    overflow: hidden;
+    width: 100%;
+    z-index: 9997;
+    background: #fff;
+    position: fixed;
+    padding-top: 80rpx;
+    color: #666;
+}
+.tab {
+    width: 33%;
+    float: left;
+    text-align: center;
+    font-size: 14px;
+}
+
+.tab-price {
+    position: relative;
+}
+
+.tab-price .up,.tab-price .down {
+    color: #dcdcdc;
+    position: absolute;
+    right: 5rpx;
+    height: 10px;
+    overflow: hidden;
+    line-height: 10px;
+    transform: scaleY(0.6);
+    text-align: center;
+}
+
+.tab-price .up {
+    top: 20rpx;
+}
+
+.tab-price .down {
+    bottom: 20rpx;
+}
+
+.midmenubto {
+    border-bottom: 2px solid #df2434;
+    padding-bottom: 5rpx;
+}
+.active {
+    color: #df2434!important;
+}
+.product-main{
+  margin-top: 155rpx;
+}

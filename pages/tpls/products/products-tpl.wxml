@@ -1,0 +1,18 @@
+<template name="products">
+  <view class="goods-container">
+        <view class="goods-box" wx:for-items="{{goods}}" wx:key="{{index}}" bindtap="toDetailsTap" data-id="{{item.id}}" data-keyword="{{item.id}}">
+           <view class="img-box">
+              <image src="{{item.mainImg.url}}" class="image" mode="aspectFill" lazy-load="true"/>
+              <view class='product-item-text'>
+                <text >月销 {{item.volume}} 件</text>
+              </view>
+           </view>
+           <view class="goods-title">{{item.name}}{{item.zkFinalPrice}}</view>
+           
+           <view style='display:flex;'>
+            <view class="goods-price">¥ {{item.price}}</view>
+            <view wx:if="{{item.zkFinalPrice && item.price > 0}}" class="goods-price" style='color:#aaa;text-decoration:line-through'>¥ {{item.price}}</view>
+           </view>           
+        </view>
+    </view>
+</template>
