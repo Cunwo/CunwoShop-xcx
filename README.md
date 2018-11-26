@@ -3,6 +3,12 @@
 
 后台http://admin.test.kuolei.com
 测试账号 18800000000  密码 admin  
+使用教程
+1、注册
+2、填写自己的appid appsecret 商户号和密钥
+3、修改小程序app.js里的subDomain为自己的接口域名
+完成！发布上线！
+
 ![Image text](http://cunwoshop.qn.cunwo.com/cunwoshopqrcode.jpg)  
 ![Image text](http://pibmlznha.bkt.clouddn.com/02.png)
 ![Image text](http://pibmlznha.bkt.clouddn.com/03.png)
