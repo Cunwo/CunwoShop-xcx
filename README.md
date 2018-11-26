@@ -4,6 +4,7 @@
 后台http://admin.test.kuolei.com
 测试账号 18800000000  密码 admin
 
+![Image text](http://cunwoshop.qn.cunwo.com/cunwoshopqrcode.jpg)
 ![Image text](http://pibmlznha.bkt.clouddn.com/02.png)
 ![Image text](http://pibmlznha.bkt.clouddn.com/03.png)
 ![Image text](http://pibmlznha.bkt.clouddn.com/04.png)
